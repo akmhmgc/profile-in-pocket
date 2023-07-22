@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: profile_in_pocket_production
-  username: profile_in_pocket
-  password: <%= ENV["PROFILE_IN_POCKET_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
