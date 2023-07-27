@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  belongs_to :issued_url
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: true
+
   class << self
     def find_or_create_from_auth_hash(auth_hash)
       user_params = user_params_from_auth_hash(auth_hash)
