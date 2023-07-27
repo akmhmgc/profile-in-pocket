@@ -10,9 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_22_081908) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_27_144048) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "issued_urls", force: :cascade do |t|
+    t.string "url_key", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -20,6 +26,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_22_081908) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "issued_url_id"
+    t.index ["issued_url_id"], name: "index_users_on_issued_url_id"
   end
 
+  add_foreign_key "users", "issued_urls"
 end
