@@ -1,10 +1,20 @@
 class User < ApplicationRecord
+  belongs_to :issued_url
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: true
+
   class << self
-    def find_or_create_from_auth_hash(auth_hash)
+    def find_from_auth_hash(auth_hash)
       user_params = user_params_from_auth_hash(auth_hash)
-      find_or_create_by(email: user_params[:email]) do |user|
-        user.update(user_params)
-      end
+      user = find_by(email: user_params[:email])
+      user
+    end
+
+    def initialize_from_auth_hash(auth_hash)
+      user_params = user_params_from_auth_hash(auth_hash)
+      user = build(email: user_params[:email])
+      user.assign_attributes(user_params)
+      user
     end
 
     private
