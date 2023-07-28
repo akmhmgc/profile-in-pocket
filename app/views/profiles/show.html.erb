@@ -1,4 +1,45 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<div class="container mx-auto px-4 py-8">
+  <div class="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-6">
+    <h1 class="text-3xl font-bold mb-4">
+      <%= @profile.name %>
+    </h1>
+    <p class="text-gray-600 mb-4">
+      <%= @profile.description %>
+    </p>
+    <% if @profile.twitter_id.present? %>
+      <div class="flex items-center mb-4">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.0/icons/twitter.svg" alt="Twitter Icon" class="w-6 h-6 mr-2">
+        <a href="https://twitter.com/<%= @profile.twitter_id %>" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline">
+          Follow on Twitter
+        </a>
+      </div>
+    <% end %>
 
-<%= @user.name %>
+      <% if @profile.github_id.present? %>
+        <div class="flex items-center mb-4">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.0/icons/github.svg" alt="GitHub Icon" class="w-6 h-6 mr-2">
+          <a href="https://github.com/<%= @profile.github_id %>" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:underline">
+            GitHub: <%= @profile.github_id %>
+          </a>
+        </div>
+      <% end %>
+
+      <% if @profile.qiita_id.present? %>
+        <div class="flex items-center mb-4">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.0/icons/qiita.svg" alt="Qiita Icon" class="w-6 h-6 mr-2">
+          <a href="https://qiita.com/<%= @profile.qiita_id %>" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">
+            Qiita: <%= @profile.qiita_id %>
+          </a>
+        </div>
+      <% end %>
+
+      <% if @profile.zenn_id.present? %>
+        <div class="flex items-center mb-4">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.0/icons/zenn.svg" alt="Zenn Icon" class="w-6 h-6 mr-2">
+          <a href="https://zenn.dev/<%= @profile.zenn_id %>" target="_blank" rel="noopener noreferrer" class="text-green-500 hover:underline">
+            Zenn: <%= @profile.zenn_id %>
+          </a>
+        </div>
+      <% end %>
+  </div>
+</div>
