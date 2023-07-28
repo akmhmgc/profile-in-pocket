@@ -7,7 +7,8 @@ class ProfilesController < ApplicationController
     raise ActiveRecord::RecordNotFound if issued_url.nil?
 
     session[:url_key] = url_key
-    redirect_to login_path if issued_url.user.nil?
+    redirect_to login_path and return if issued_url.user.nil?
+
     user = issued_url.user
     @profile = user.profile
   end
