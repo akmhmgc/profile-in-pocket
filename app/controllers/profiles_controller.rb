@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
 
     session[:url_key] = url_key
     redirect_to login_path if issued_url.user.nil?
-    @user = issued_url.user
+    user = issued_url.user
+    @profile = user.profile
   end
 end
