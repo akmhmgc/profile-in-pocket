@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_27_144048) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_28_132532) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_144048) do
     t.string "url_key", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "name", null: false, comment: "名前"
+    t.text "description", null: false, comment: "自己紹介文"
+    t.string "twitter_id", comment: "Twitter ID"
+    t.string "github_id", comment: "GitHub ID"
+    t.string "qiita_id", comment: "Qiita ID"
+    t.string "zenn_id", comment: "Zenn ID"
+    t.string "url", comment: "URL"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -30,5 +44,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_144048) do
     t.index ["issued_url_id"], name: "index_users_on_issued_url_id"
   end
 
+  add_foreign_key "profiles", "users"
   add_foreign_key "users", "issued_urls"
 end

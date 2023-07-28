@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
-  skip_before_action :check_logged_in
+  skip_before_action :check_logged_in, only: :show
+
   def show
     url_key = params.require(:url_key)
     issued_url = IssuedUrl.find_by(url_key:)
@@ -7,6 +8,7 @@ class ProfilesController < ApplicationController
 
     session[:url_key] = url_key
     redirect_to login_path if issued_url.user.nil?
-    @user = issued_url.user
+    user = issued_url.user
+    @profile = user.profile
   end
 end

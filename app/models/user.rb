@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   belongs_to :issued_url
+  has_one :profile, dependent: :destroy
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
 
