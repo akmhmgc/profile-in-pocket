@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   before_action :check_logged_in
 
   unless Rails.env.development?
-    rescue_from StandardError,                    with: :handle_500
     rescue_from ActiveRecord::RecordNotFound,     with: :handle_404
     rescue_from ActionController::RoutingError,   with: :handle_404
     rescue_from ActionController::InvalidAuthenticityToken, with: :handle_404
