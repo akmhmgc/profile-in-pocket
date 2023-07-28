@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
-  skip_before_action :check_logged_in
+  skip_before_action :check_logged_in, only: :show
+
   def show
     url_key = params.require(:url_key)
     issued_url = IssuedUrl.find_by(url_key:)

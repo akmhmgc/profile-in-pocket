@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   get 'log_out', to: 'sessions#destroy', as: 'log_out'
 
   resources :sessions, only: %i[create destroy]
-  resources :profiles, only: %i[show], param: :url_key
+  resources :profiles, except: %i[index destroy], param: :url_key
 end
