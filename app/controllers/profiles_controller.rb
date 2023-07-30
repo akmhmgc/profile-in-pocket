@@ -26,6 +26,7 @@ class ProfilesController < ApplicationController
     @profile = current_user.profile
     if @profile.update(profile_params)
       redirect_to profile_path(@profile.user.issued_url.url_key)
+      flash[:notice] = 'プロフィールが登録されました。<br>カードをかざせばプロフィールが表示されます。'
     else
       render :edit
     end
