@@ -2,22 +2,19 @@ class SessionsController < ApplicationController
   skip_before_action :check_logged_in, only: %i[new create]
 
   def new
-    # TODO: ログイン後のページに遷移
-    redirect_to root_path if current_user.present?
   end
 
   def create
     # アカウントを既に持っている場合
     user = User.find_from_auth_hash(auth_hash)
-    # TODO: ログイン後のページに遷移
-    redirect_to root_path if user.present?
+    redirect_to new_profile_path if user.present?
 
     # 新規作成の場合、profiles/[:url_key]を経由していない場合はエラー
     check_url_key_is_valid
     user.issued_url = @issued_url
     session[:url_key] = nil
     log_in user if user.save
-    redirect_to root_path
+    redirect_to new_profile_path
   end
 
   def destroy

@@ -15,31 +15,37 @@
       </div>
     <% end %>
 
-      <% if @profile.github_id.present? %>
-        <div class="flex items-center mb-4">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.0/icons/github.svg" alt="GitHub Icon" class="w-6 h-6 mr-2">
-          <a href="https://github.com/<%= @profile.github_id %>" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:underline">
-            GitHub: <%= @profile.github_id %>
-          </a>
-        </div>
-      <% end %>
+    <% if @profile.github_id.present? %>
+      <div class="flex items-center mb-4">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.0/icons/github.svg" alt="GitHub Icon" class="w-6 h-6 mr-2">
+        <a href="https://github.com/<%= @profile.github_id %>" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:underline">
+          GitHub: <%= @profile.github_id %>
+        </a>
+      </div>
+    <% end %>
 
-      <% if @profile.qiita_id.present? %>
-        <div class="flex items-center mb-4">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.0/icons/qiita.svg" alt="Qiita Icon" class="w-6 h-6 mr-2">
-          <a href="https://qiita.com/<%= @profile.qiita_id %>" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">
-            Qiita: <%= @profile.qiita_id %>
-          </a>
-        </div>
-      <% end %>
+    <% if @profile.qiita_id.present? %>
+      <div class="flex items-center mb-4">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.0/icons/qiita.svg" alt="Qiita Icon" class="w-6 h-6 mr-2">
+        <a href="https://qiita.com/<%= @profile.qiita_id %>" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">
+          Qiita: <%= @profile.qiita_id %>
+        </a>
+      </div>
+    <% end %>
 
-      <% if @profile.zenn_id.present? %>
-        <div class="flex items-center mb-4">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.0/icons/zenn.svg" alt="Zenn Icon" class="w-6 h-6 mr-2">
-          <a href="https://zenn.dev/<%= @profile.zenn_id %>" target="_blank" rel="noopener noreferrer" class="text-green-500 hover:underline">
-            Zenn: <%= @profile.zenn_id %>
-          </a>
-        </div>
-      <% end %>
+    <% if @profile.zenn_id.present? %>
+      <div class="flex items-center mb-4">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.0/icons/zenn.svg" alt="Zenn Icon" class="w-6 h-6 mr-2">
+        <a href="https://zenn.dev/<%= @profile.zenn_id %>" target="_blank" rel="noopener noreferrer" class="text-green-500 hover:underline">
+          Zenn: <%= @profile.zenn_id %>
+        </a>
+      </div>
+    <% end %>
+
+    <% if @profile.user == current_user %>
+      <a href="<%= edit_profile_path(@profile) %>" class="inline-block mt-2 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600">
+        編集する
+      </a>
+    <% end %>
   </div>
 </div>
