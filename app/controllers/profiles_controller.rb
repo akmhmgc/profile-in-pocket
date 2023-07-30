@@ -6,7 +6,6 @@ class ProfilesController < ApplicationController
     redirect_to edit_profile_path(profile.user.issued_url.url_key) if profile.present?
 
     @profile = Profile.new
-    puts @profile
   end
 
   def create
@@ -16,6 +15,19 @@ class ProfilesController < ApplicationController
       redirect_to profile_path(@profile.user.issued_url.url_key)
     else
       render :new
+    end
+  end
+
+  def edit
+    @profile = current_user.profile
+  end
+
+  def update
+    @profile = current_user.profile
+    if @profile.update(profile_params)
+      redirect_to profile_path(@profile.user.issued_url.url_key)
+    else
+      render :edit
     end
   end
 
