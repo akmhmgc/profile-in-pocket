@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
   skip_before_action :check_logged_in, only: %i[new create]
 
   def new
-    redirect_to new_profile_path if current_user.present?
   end
 
   def create
